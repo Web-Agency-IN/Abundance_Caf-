@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Abundance Café — Concept</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root{
+    --bg:#0b0908;
+    --cream:#f4eadc;
+    --muted:#a79b90;
+    --accent:#d89a5b;
+    --line:rgba(244,234,220,.12);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--cream);
+    font-family:"DM Sans",sans-serif;
+    overflow-x:hidden;
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+    z-index:999;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+/* NAV */
+
+.nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:100;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:22px 6%;
+
+    background:linear-gradient(
+        to bottom,
+        rgba(11,9,8,.9),
+        rgba(11,9,8,0)
+    );
+}
+
+.brand{
+    font-size:13px;
+    letter-spacing:3px;
+    font-weight:700;
+}
+
+.brand span{
+    color:var(--accent);
+}
+
+.nav-link{
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--muted);
+}
+
+/* HERO */
+
+.hero{
+    min-height:100svh;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:100px 6% 60px;
+
+    overflow:hidden;
+}
+
+.hero-title{
+    position:relative;
+    z-index:10;
+    text-align:center;
+}
+
+.eyebrow{
+    font-size:10px;
+    letter-spacing:5px;
+    color:var(--accent);
+    text-transform:uppercase;
+    margin-bottom:20px;
+}
+
+h1{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(65px,15vw,170px);
+    line-height:.78;
+    font-weight:600;
+    letter-spacing:-7px;
+}
+
+h1 .outline{
+    color:transparent;
+    -webkit-text-stroke:1px var(--cream);
+}
+
+.hero-sub{
+    margin:35px auto 0;
+    max-width:380px;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.8;
+}
+
+/* FLOATING IMAGES */
+
+.photo{
+    position:absolute;
+    overflow:hidden;
+    background:#191411;
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.5);
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+
+    filter:saturate(.9) contrast(1.05);
+
+    transition:
+        transform 1s cubic-bezier(.2,.7,.2,1),
+        filter .6s ease;
+}
+
+.photo:hover img{
+    transform:scale(1.08);
+    filter:saturate(1.1) contrast(1.08);
+}
+
+.photo1{
+    width:190px;
+    height:260px;
+
+    left:3%;
+    top:19%;
+
+    transform:rotate(-7deg);
+}
+
+.photo2{
+    width:210px;
+    height:280px;
+
+    right:3%;
+    top:15%;
+
+    transform:rotate(7deg);
+}
+
+.photo3{
+    width:230px;
+    height:300px;
+
+    right:11%;
+    bottom:7%;
+
+    transform:rotate(-4deg);
+}
+
+/* DARK IMAGE OVERLAY */
+
+.photo:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        180deg,
+        transparent 55%,
+        rgba(0,0,0,.25)
+    );
+    pointer-events:none;
+}
+
+/* HERO BUTTON */
+
+.hero-action{
+    margin-top:30px;
+
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+
+    padding:13px 20px;
+
+    border:1px solid var(--line);
+    border-radius:100px;
+
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    transition:.3s;
+}
+
+.hero-action:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+}
+
+/* DIVIDER */
+
+.divider{
+    height:1px;
+    background:var(--line);
+    margin:0 6%;
+}
+
+/* INTRO */
+
+.intro{
+    padding:150px 8%;
+    display:grid;
+    grid-template-columns:1fr 1.4fr;
+    gap:80px;
+}
+
+.label{
+    font-size:10px;
+    color:var(--accent);
+    letter-spacing:4px;
+    text-transform:uppercase;
+}
+
+.intro h2{
+    margin-top:20px;
+
+    font-family:"Playfair Display",serif;
+    font-size:clamp(40px,6vw,75px);
+    line-height:.95;
+    font-weight:500;
+}
+
+.intro-copy{
+    max-width:600px;
+    color:var(--muted);
+    font-size:17px;
+    line-height:1.9;
+}
+
+/* MENU */
+
+.menu-section{
+    padding:80px 8% 150px;
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:30px;
+}
+
+.section-title{
+    margin-top:15px;
+
+    font-family:"Playfair Display",serif;
+    font-size:clamp(45px,7vw,90px);
+    line-height:.9;
+}
+
+.menu-grid{
+    margin-top:65px;
+
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+
+    border-top:1px solid var(--line);
+}
+
+.menu-item{
+    padding:35px 10px;
+
+    border-bottom:1px solid var(--line);
+
+    display:flex;
+    justify-content:space-between;
+    gap:30px;
+}
+
+.menu-item:nth-child(odd){
+    border-right:1px solid var(--line);
+    padding-right:40px;
+}
+
+.menu-item:nth-child(even){
+    padding-left:40px;
+}
+
+.menu-name{
+    font-family:"Playfair Display",serif;
+    font-size:25px;
+}
+
+.menu-desc{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:8px;
+}
+
+.menu-price{
+    color:var(--accent);
+    font-size:13px;
+    white-space:nowrap;
+}
+
+/* EXPERIENCE */
+
+.experience{
+    min-height:75vh;
+
+    margin:0 5%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    position:relative;
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(216,154,91,.18),
+            transparent 50%
+        );
+
+    border:1px solid var(--line);
+}
+
+.experience-title{
+    text-align:center;
+    position:relative;
+    z-index:5;
+}
+
+.experience-title small{
+    color:var(--accent);
+    letter-spacing:5px;
+    font-size:9px;
+}
+
+.experience-title h2{
+    margin-top:20px;
+
+    font-family:"Playfair Display",serif;
+    font-size:clamp(55px,9vw,120px);
+    line-height:.85;
+}
+
+/* LOCATION */
+
+.location{
+    padding:160px 8%;
+}
+
+.location-grid{
+    margin-top:60px;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.location-card{
+    border:1px solid var(--line);
+    padding:35px;
+    min-height:190px;
+}
+
+.location-card span{
+    display:block;
+
+    color:var(--accent);
+    font-size:10px;
+    letter-spacing:3px;
+
+    margin-bottom:25px;
+}
+
+.location-card p{
+    color:var(--muted);
+    line-height:1.7;
+}
+
+/* CTA */
+
+.cta{
+    padding:160px 7%;
+
+    text-align:center;
+
+    border-top:1px solid var(--line);
+}
+
+.cta h2{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(60px,11vw,150px);
+    line-height:.8;
+    letter-spacing:-6px;
+}
+
+.cta p{
+    margin:35px auto;
+
+    color:var(--muted);
+    max-width:400px;
+    line-height:1.7;
+}
+
+.cta-button{
+    display:inline-block;
+
+    padding:16px 25px;
+
+    background:var(--cream);
+    color:#0b0908;
+
+    border-radius:100px;
+
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+/* FOOTER */
+
+footer{
+    padding:30px 7%;
+
+    border-top:1px solid var(--line);
+
+    display:flex;
+    justify-content:space-between;
+
+    color:#6f675f;
+
+    font-size:10px;
+    letter-spacing:1px;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+    .nav{
+        padding:18px 5%;
+    }
+
+    .hero{
+        min-height:100svh;
+        padding:120px 5% 70px;
+    }
+
+    h1{
+        font-size:76px;
+        letter-spacing:-5px;
+    }
+
+    .hero-sub{
+        font-size:13px;
+        max-width:280px;
+    }
+
+    .photo1{
+        width:110px;
+        height:150px;
+
+        left:2%;
+        top:13%;
+    }
+
+    .photo2{
+        width:115px;
+        height:160px;
+
+        right:1%;
+        top:18%;
+    }
+
+    .photo3{
+        width:130px;
+        height:170px;
+
+        right:4%;
+        bottom:7%;
+    }
+
+    .intro{
+        padding:100px 7%;
+
+        display:block;
+    }
+
+    .intro-copy{
+        margin-top:45px;
+        font-size:15px;
+    }
+
+    .menu-section{
+        padding:70px 7% 100px;
+    }
+
+    .menu-grid{
+        display:block;
+        margin-top:40px;
+    }
+
+    .menu-item,
+    .menu-item:nth-child(odd),
+    .menu-item:nth-child(even){
+        border-right:0;
+        padding:25px 0;
+    }
+
+    .menu-name{
+        font-size:21px;
+    }
+
+    .experience{
+        min-height:55vh;
+        margin:0 4%;
+    }
+
+    .location{
+        padding:100px 7%;
+    }
+
+    .location-grid{
+        display:block;
+        margin-top:40px;
+    }
+
+    .location-card{
+        margin-bottom:12px;
+    }
+
+    .cta{
+        padding:110px 6%;
+    }
+
+    .cta h2{
+        letter-spacing:-4px;
+    }
+
+    footer{
+        display:block;
+        line-height:2;
+    }
+}
+
+/* REDUCE MOTION */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *:before,
+    *:after{
+        scroll-behavior:auto!important;
+        transition:none!important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+
+<header class="nav">
+
+    <div class="brand">
+        ABUNDANCE<span>.</span>
+    </div>
+
+    <a href="#menu" class="nav-link">
+        Menu
+    </a>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <!-- IMAGE 1 -->
+
+    <div class="photo photo1">
+        <img src="1.jpg" alt="Abundance Cafe concept image">
+    </div>
+
+
+    <!-- IMAGE 2 -->
+
+    <div class="photo photo2">
+        <img src="2.jpg" alt="Abundance Cafe concept image">
+    </div>
+
+
+    <!-- IMAGE 3 -->
+
+    <div class="photo photo3">
+        <img src="3.jpg" alt="Abundance Cafe concept image">
+    </div>
+
+
+    <div class="hero-title">
+
+        <div class="eyebrow">
+            Manikonda • Hyderabad
+        </div>
+
+        <h1>
+            ABUNDANCE<br>
+            <span class="outline">CAFÉ</span>
+        </h1>
+
+        <p class="hero-sub">
+            Food, conversations and moments
+            worth staying for.
+        </p>
+
+        <a href="#menu" class="hero-action">
+            Explore the experience
+            <span>↓</span>
+        </a>
+
+    </div>
+
+</section>
+
+
+<div class="divider"></div>
+
+
+<!-- INTRO -->
+
+<section class="intro">
+
+    <div>
+
+        <div class="label">
+            The place
+        </div>
+
+        <h2>
+            Come for<br>
+            the food.
+        </h2>
+
+    </div>
+
+
+    <div class="intro-copy">
+
+        <p>
+            Abundance Café brings together
+            satisfying food, relaxed conversations
+            and a comfortable café atmosphere
+            in Manikonda.
+        </p>
+
+        <br>
+
+        <p>
+            A digital experience should feel just
+            as inviting as the place itself.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- MENU -->
+
+<section class="menu-section" id="menu">
+
+    <div class="section-head">
+
+        <div>
+
+            <div class="label">
+                Discover
+            </div>
+
+            <div class="section-title">
+                The menu.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="menu-grid">
+
+        <div class="menu-item">
+
+            <div>
+                <div class="menu-name">
+                    Chicken 65
+                </div>
+
+                <div class="menu-desc">
+                    Crispy • Spiced • Classic
+                </div>
+            </div>
+
+            <div class="menu-price">
+                Ask us
+            </div>
+
+        </div>
+
+
+        <div class="menu-item">
+
+            <div>
+                <div class="menu-name">
+                    Café Fries
+                </div>
+
+                <div class="menu-desc">
+                    Golden • Crispy • Shareable
+                </div>
+            </div>
+
+            <div class="menu-price">
+                Ask us
+            </div>
+
+        </div>
+
+
+        <div class="menu-item">
+
+            <div>
+                <div class="menu-name">
+                    Signature Bites
+                </div>
+
+                <div class="menu-desc">
+                    Freshly prepared favourites
+                </div>
+            </div>
+
+            <div class="menu-price">
+                Ask us
+            </div>
+
+        </div>
+
+
+        <div class="menu-item">
+
+            <div>
+                <div class="menu-name">
+                    Café Drinks
+                </div>
+
+                <div class="menu-desc">
+                    Cold • Hot • Refreshing
+                </div>
+            </div>
+
+            <div class="menu-price">
+                Ask us
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- EXPERIENCE -->
+
+<section class="experience">
+
+    <div class="experience-title">
+
+        <small>
+            FOOD • PEOPLE • MOMENTS
+        </small>
+
+        <h2>
+            Stay<br>
+            awhile.
+        </h2>
+
+    </div>
+
+</section>
+
+
+<!-- LOCATION -->
+
+<section class="location">
+
+    <div class="label">
+        Visit us
+    </div>
+
+    <div class="section-title">
+        Find<br>
+        Abundance.
+    </div>
+
+
+    <div class="location-grid">
+
+        <div class="location-card">
+
+            <span>
+                LOCATION
+            </span>
+
+            <p>
+                Pipeline Road,<br>
+                Lakshmi Narasimhaswamy Nagar,<br>
+                Tapovan Park,<br>
+                Puppalguda, Manikonda,<br>
+                Hyderabad, Telangana 500089
+            </p>
+
+        </div>
+
+
+        <div class="location-card">
+
+            <span>
+                EXPERIENCE
+            </span>
+
+            <p>
+                A café destination for food,
+                snacks, conversations and
+                relaxed evenings.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta">
+
+    <h2>
+        See you<br>
+        there.
+    </h2>
+
+    <p>
+        Good food. Good company.
+        One more reason to stay a little longer.
+    </p>
+
+    <a href="#location" class="cta-button">
+        FIND THE CAFÉ
+    </a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <span>
+        ABUNDANCE CAFÉ — CONCEPT
+    </span>
+
+    <span>
+        WEBSITE CONCEPT • 2026
+    </span>
+
+</footer>
+
+
+</body>
+</html>
